@@ -32,7 +32,7 @@ string RC4::encrypt(const string &plain) {
   return cipher;
 }
 
-string RC4::decrypt(const string &cipher) { return decrypt(cipher); }
+string RC4::decrypt(const string &cipher) { return encrypt(cipher); }
 
 void RC4::setKey(const string &key) {
   int newSize = key.size() + 1;
