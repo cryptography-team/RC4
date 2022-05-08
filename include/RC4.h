@@ -1,14 +1,20 @@
 #ifndef RC4_H_INCLUDED
 #define RC4_H_INCLUDED
 #include <iostream>
+#include <vector>
+#include <random>
+#include <algorithm>
+#include <chrono>
 using namespace std;
 class BBSG
 {
 private :
     int len , n;
+    vector<int> primeNumbers;
+    default_random_engine generator;
     unsigned char p, q, s;
 public :
-    BBSG(int length = 128);
+    BBSG(int length ,int num);
     void generateTwoPrimeNumbers();
     void generateKey(unsigned char* key);
 };
