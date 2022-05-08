@@ -1,9 +1,10 @@
-#include "../include/RC4.h"
-BBSG ::BBSG(int length) {}
+#include "RC4.h"
 
-void BBSG ::generateTwoPrimeNumbers() {}
-//////////////////////////
-void RC4 ::damageKeyStream() {}
-string RC4 ::encrypt(const string &plain) {}
-string RC4 ::decrypt(const string &cipher) {}
-RC4 ::~RC4();
+BBSG :: BBSG(int length){}
+void BBSG :: generateKey(unsigned char* key){}
+void BBSG :: generateTwoPrimeNumbers(){}
+void RC4 :: generateRandomKey(){}
+
+
+
+
