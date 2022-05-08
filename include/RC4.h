@@ -9,10 +9,10 @@ using namespace std;
 class BBSG
 {
 private :
-    int len , n;
+    int len , n , s;
     vector<int> primeNumbers;
     default_random_engine generator;
-    unsigned char p, q, s;
+    unsigned char p, q;
 public :
     BBSG(int length ,int num);
     void generateTwoPrimeNumbers();
