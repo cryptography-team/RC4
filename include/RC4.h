@@ -4,7 +4,7 @@
 using namespace std;
 class BBSG
 {
-private:
+private :
     int len , n;
     unsigned char p, q, s;
 public :
@@ -15,16 +15,15 @@ public :
 class RC4
 {
 private:
-    unsigned char S[256] , T[256], *K , *keyStream;
+    unsigned char *K;
     int k_len;
 public:
-    RC4();
+    RC4(int len);
     void setKey(unsigned char *key);
     void generateRandomKey();
-    void generateKeyStream();
-    void damageKeyStream();
     string encrypt(const string& plain);
     string decrypt(const string& cipher);
+    ~RC4();
 };
 
 #endif // RC4_H_INCLUDED
