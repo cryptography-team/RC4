@@ -27,7 +27,7 @@ private:
 public:
   RC4(int len);
   void setKey(unsigned char *key);
-  void generateRandomKey();
+  void generateRandomKey(int len);
   string encrypt(const string &plain);
   string decrypt(const string &cipher);
   ~RC4();
