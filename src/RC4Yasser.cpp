@@ -1,11 +1,8 @@
 #include "RC4.h"
 #include <cstring>
 
-using std::strcpy;
-using std::strlen;
-using std::swap;
-
-RC4::RC4(int len) : k_len(0), K(new unsigned char[0]) {
+RC4::RC4(int len) : k_len(1), K(new unsigned char[1]) {
+  K[0] = '\0';
   generateRandomKey(len);
 }
 
@@ -35,16 +32,16 @@ string RC4::encrypt(const string &plain) {
   return cipher;
 }
 
-string RC4::decrypt(const string &cipher) { decrypt(cipher); }
+string RC4::decrypt(const string &cipher) { return decrypt(cipher); }
 
-void RC4::setKey(unsigned char *key) {
-  int newSize = strlen(key);
+void RC4::setKey(const string &key) {
+  int newSize = key.size() + 1;
   if (k_len != newSize) {
     k_len = newSize;
     delete[] K;
-    key = new unsigned char[k_len];
+    K = new unsigned char[k_len];
   }
-  strcpy(K, key);
+  strcpy((char *)K, key.c_str());
 }
 
 RC4::~RC4() { delete[] K; };
