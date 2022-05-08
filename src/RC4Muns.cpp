@@ -1,7 +1,7 @@
 #include "RC4.h"
 /**
 The Sieve of Eratosthenes algorithm is used to generate prime numbers.
-at the beginning we write down all numbers between 2 and n .
+at the beginning we write down all numbers between 2 and num .
 We mark all proper multiples of 2 (since 2 is the smallest prime number) as composite.
 A proper multiple of a number X , is a number greater than X  and divisible by X.
 Then we find the next number that hasn't been marked as composite, in this case it is 3.
@@ -43,10 +43,12 @@ void BBSG :: generateKey(unsigned char* key)
 }
 void BBSG :: generateTwoPrimeNumbers()
 {
-
+/// uniform_int_distribution<int>(0, primeNumbers.size()-1)(rng) used to,
+/// generate a random number from 0 to size of the primes vector.
     p = primeNumbers[uniform_int_distribution<int>(0, primeNumbers.size()-1)(rng)];
     q = primeNumbers[uniform_int_distribution<int>(0, primeNumbers.size()-1)(rng)];
     n = p * q;
+// limit is a count of numbers not divisible by p and q
     int limit;
     if(p == q)
     {
@@ -56,6 +58,7 @@ void BBSG :: generateTwoPrimeNumbers()
     {
         limit = n - (n/p + n/q);
     }
+//Generate a random index to select s
     limit = uniform_int_distribution<int>(0, limit)(rng);
     for(int i=1, j=0; i<n; i++)
     {
