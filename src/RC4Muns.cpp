@@ -1,5 +1,14 @@
 #include "RC4.h"
-
+/**
+The Sieve of Eratosthenes algorithm is used to generate prime numbers.
+at the beginning we write down all numbers between 2 and n .
+We mark all proper multiples of 2 (since 2 is the smallest prime number) as composite.
+A proper multiple of a number X , is a number greater than X  and divisible by X.
+Then we find the next number that hasn't been marked as composite, in this case it is 3.
+Which means 3 is prime, and we mark all proper multiples of 3 as composite.
+The next unmarked number is 5, which is the next prime number, and we mark all proper multiples of it.
+And we continue this procedure until we processed all numbers in the row.
+**/
 BBSG :: BBSG(int length,int num):len(length),rng(chrono::steady_clock::now().time_since_epoch().count())
 {
     vector<bool>primes(num,true);
@@ -8,6 +17,7 @@ BBSG :: BBSG(int length,int num):len(length),rng(chrono::steady_clock::now().tim
     {
         if(primes[i])
         {
+//Push the number to the primeNumbers vector if it is prime and 3 = number mod 4.
             if(i%4 == 3)
                 primeNumbers.push_back(i);
             for(int j = i*i; j<num; j+=i)
@@ -20,13 +30,13 @@ BBSG :: BBSG(int length,int num):len(length),rng(chrono::steady_clock::now().tim
 }
 void BBSG :: generateKey(unsigned char* key)
 {
-    int x = (long long)s*s % n;
+    int x = ((long long)s*s) % n;
     for(int i = 0 ; i<len; ++i)
     {
         key[i] = 0;
         for(int j = 0 ; j<8; j++)
         {
-            x = x*x % n;
+            x = (x*x) % n;
             key[i] |= (x % 2) << j;
         }
     }
@@ -44,7 +54,7 @@ void BBSG :: generateTwoPrimeNumbers()
     }
     else
     {
-        limit = n - n/p + n/q;
+        limit = n - (n/p + n/q);
     }
     limit = uniform_int_distribution<int>(0, limit)(rng);
     for(int i=1, j=0; i<n; i++)
