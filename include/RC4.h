@@ -10,8 +10,8 @@ class BBSG {
 private:
   int len, n, s;
   vector<int> primeNumbers;
-  default_random_engine generator;
   unsigned char p, q;
+  mt19937 rng;
 
 public:
   BBSG(int length, int num);
@@ -26,8 +26,8 @@ private:
 
 public:
   RC4(int len);
-  void setKey(unsigned char *key);
-  void generateRandomKey(int len);
+  void setKey(const string &key);
+  const unsigned char *generateRandomKey(int len);
   string encrypt(const string &plain);
   string decrypt(const string &cipher);
   ~RC4();
