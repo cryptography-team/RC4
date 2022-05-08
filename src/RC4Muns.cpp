@@ -25,6 +25,7 @@ BBSG ::BBSG(int length, int num)
       }
     }
   }
+  generateTwoPrimeNumbers();
 }
 void BBSG ::generateKey(unsigned char *key) {
   int x = ((long long)s * s) % n;
