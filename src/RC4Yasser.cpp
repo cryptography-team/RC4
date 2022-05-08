@@ -5,7 +5,9 @@ using std::strcpy;
 using std::strlen;
 using std::swap;
 
-RC4::RC4(int len) { generateRandomKey(len); }
+RC4::RC4(int len) : k_len(0), K(new unsigned char[0]) {
+  generateRandomKey(len);
+}
 
 string RC4::encrypt(const string &plain) {
   int S[SIZE], T[SIZE];
