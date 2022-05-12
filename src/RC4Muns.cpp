@@ -27,12 +27,12 @@ BBSG ::BBSG(int length, int num)
   }
   generateTwoPrimeNumbers();
 }
-void BBSG ::generateKey(unsigned char *key) {
+void BBSG ::generateKey(char *key) {
   int x = ((long long)s * s) % n;
   for (int i = 0; i < len; ++i) {
     key[i] = 0;
     for (int j = 0; j < 8; j++) {
-      x = (1LL * x * x) % n;
+      x = (long long)x * x % n;
       key[i] |= (x % 2) << j;
     }
   }
@@ -64,9 +64,9 @@ void BBSG ::generateTwoPrimeNumbers() {
     }
   }
 }
-const unsigned char *RC4 ::generateRandomKey(int len) {
+const char *RC4 ::generateRandomKey(int len) {
   delete[] K;
-  K = new unsigned char[len];
+  K = new char[len];
   k_len = len;
   BBSG randomKey(len, 1000);
   randomKey.generateKey(K);
