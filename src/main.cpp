@@ -23,7 +23,22 @@ int main() {
       string plain;
       getline(cin, plain);
       cipher = streamCipher.encrypt(plain);
-      cout << "The corresponding cipher text is:\n\t" << cipher << endl;
+      cout << "The corresponding cipher text is:\n\t";
+      int i = 0;
+      unsigned int tmp = 0;
+      for (unsigned char c : cipher) {
+        unsigned int cint = c;
+        tmp <<= 8;
+        tmp |= cint;
+        i++;
+        if (i % 4 == 0) {
+          cout << hex << tmp;
+          tmp = 0;
+        }
+      }
+      if (i % 4 != 0)
+        cout << hex << tmp;
+      cout << endl;
     } else if (option == 2) {
       cout << "The corresponding plain text is:\n\t"
            << streamCipher.decrypt(cipher) << endl;
