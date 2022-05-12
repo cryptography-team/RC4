@@ -10,24 +10,24 @@ class BBSG {
 private:
   int len, n, s;
   vector<int> primeNumbers;
-  unsigned char p, q;
+  int p, q;
   mt19937 rng;
 
 public:
   BBSG(int length, int num);
   void generateTwoPrimeNumbers();
-  void generateKey(unsigned char *key);
+  void generateKey(char *key);
 };
 class RC4 {
 private:
   enum { SIZE = 256 };
-  unsigned char *K;
+  char *K;
   int k_len;
 
 public:
   RC4(int len);
   void setKey(const string &key);
-  const unsigned char *generateRandomKey(int len);
+  const char *generateRandomKey(int len);
   string encrypt(const string &plain);
   string decrypt(const string &cipher);
   ~RC4();
